@@ -1,30 +1,36 @@
 ---
 title: 自述
-description: 这是一份站长的自述报告，请查收。
+description: 这是一份站长Yolo的自述报告，请查收。
 comments: false
 ---
 
-## 关于 Gyoza
+## 关于本站
 
-Gyoza 是一个使用 Astro 和 React 开发的博客主题。Gyoza 借鉴了 [Shiro](https://github.com/innei/Shiro) 和一些网站的设计。
+这个博客是我为自己搭建的一本数字笔记，用来记录我在**学习、技术与数字生活**中的思考与片段。
 
-Gyoza 的核心理念是简洁，快速，可爱。
+这里不会追求复杂的交互或炫目的设计。
 
-- 在 [Markdown 示例](/posts/markdown) 中展示了 Markdown 的渲染样式
-- 可以前往 [Gyoza 使用指南](/posts/guide) 了解 Gyoza 的使用方法
+我更在意内容本身是否清晰、是否长期可读。
 
-Gyoza 是开源的，如果你对这个项目感兴趣，欢迎前往 Gyoza 的 [Github 仓库](https://github.com/lxchapu/astro-gyoza) 来提 Issue 或者 PR。
+它更像是我在数字世界中的一块 **自留地** ，安静、独立，也持续生长。
 
-## 关于作者
+## 关于我
 
-我是 lxchapu，是一名前端开发者，喜欢各种有趣的东西。欢迎访问我的个人网站 [www.lxchapu.com](https://www.lxchapu.com)，了解关于我更多的信息。
+你好，我是Yolo，你也可以叫我橘子。
 
-## 致谢
+目前仍然处在不断学习的阶段，对技术、网络与数字世界保持着长期的好奇心。
 
-感谢以下项目：
+会折腾服务器、研究网络表现、写点代码，也会看剧、看片、记录想法。
 
-- [Astro](https://astro.build/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Jotai](https://jotai.org/)
+这些零散的探索与记录，构成了我真实而不那么线性的时间轨迹。
+
+> 我逐渐意识到，自由并不是一个宏大的口号，
+>
+> 而是一种 **理解系统、建立连接、并为自己保留选择空间的能力** 。
+
+## 我在做什么？
+
+- 持续优化自己的上网体验🤫
+- 记录学习过程中的技术笔记与实践💻
+- 写下一些不希望被算法淹没的想法📝
+- 看电影、追剧，寻找能留下痕迹的作品🎬
