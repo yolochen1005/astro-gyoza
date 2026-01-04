@@ -34,6 +34,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           source: 'dist/*'
-          target: '/var/www/reavalon.com'
+          target: '/var/www/reavalon.com/dist'
           strip_components: 1 # 去掉 dist 文件夹前缀
           overwrite: true
