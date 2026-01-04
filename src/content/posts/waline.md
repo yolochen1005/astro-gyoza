@@ -128,7 +128,7 @@ sudo certbot --nginx -d comments.reavalon.com
 
 打开 `https://comments.reavalon.com`，首次访问应该是这个样子
 
-![](/waline.png)
+![](/waline/waline.png)
 
 这时候输入 `https://comments.reavalon.com/ui/login`，默认情况首个注册的人会被设定成管理员。
 
