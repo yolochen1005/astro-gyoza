@@ -79,7 +79,11 @@ tags: [GoMami, 香港VPS, VPS, 亚太优化VPS, VPS测评]
 
 ![流媒体解锁截图](/gomami/lmt.png)
 
-## 七、整体评价
+## 七、晚高峰电信实测(笔者暂无联通和移动，可联系TG协助测速)
+
+![iperf3](/gomami/cesu.png)
+
+## 八、整体评价
 
 GoMami HKG.Turin.Mini 并不是“性价比炸裂”的那种 VPS
 
