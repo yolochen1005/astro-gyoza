@@ -37,3 +37,4 @@ jobs:
           target: '/var/www/reavalon.com/dist'
           strip_components: 1 # 去掉 dist 文件夹前缀
           overwrite: true
+          rm: true
