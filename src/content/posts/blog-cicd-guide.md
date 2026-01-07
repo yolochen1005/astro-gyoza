@@ -3,7 +3,7 @@ title: 从手动到全自动：我的博客 GitHub Actions 部署方案
 date: 2026-01-07
 summary: 记录博客从本地手动上传到 GitHub Actions 自动部署的演进过程，分享如何利用 CI/CD 实现 Push 即发布的顺滑体验。
 category: 学习
-tags: [GitHub Actions, VPS, 自动化, CI/CD]
+tags: [GitHub Actions, VPS, 自动化, CI-CD]
 ---
 
 最开始写博客只是想记录点学习里遇到的一些问题，结果光是**怎么把网页放上去**这件事就让我折腾了好久。
