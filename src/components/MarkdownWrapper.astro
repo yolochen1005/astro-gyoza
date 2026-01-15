@@ -18,16 +18,14 @@ const { class: className } = Astro.props
       const code = pre.querySelector('code')
       if (!code) return
 
-      // 按钮容器
       const wrapper = document.createElement('div')
       wrapper.className = 'copy-btn-wrapper'
       pre.style.position = 'relative'
       pre.appendChild(wrapper)
 
-      // 复制按钮
       const btn = document.createElement('button')
       btn.className = 'copy-btn'
-      btn.textContent = '📋' // 初始图标
+      btn.textContent = '📋'
       Object.assign(btn.style, {
         position: 'absolute',
         top: '8px',
@@ -36,15 +34,12 @@ const { class: className } = Astro.props
         borderRadius: '6px',
         border: 'none',
         cursor: 'pointer',
-        // background: '#f3f4f6',
         color: '#111',
-        // boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
         transition: 'all 0.2s ease-in-out',
         zIndex: '20',
         fontSize: '14px',
       })
 
-      // 勾勾提示
       const check = document.createElement('span')
       check.textContent = '✔️'
       Object.assign(check.style, {
@@ -74,12 +69,47 @@ const { class: className } = Astro.props
     })
   }
 
-  // 初始化一次
-  window.addEventListener('load', () => setTimeout(addCopyButtons, 0))
+  /* ================= 图片点击放大 ================= */
 
-  // SPA 导航后
-  window.addEventListener('astro:after-swap', () => setTimeout(addCopyButtons, 50))
+  function enableImageZoom() {
+    document.querySelectorAll('#markdown-wrapper figure img').forEach((img) => {
+      if (img.dataset.zoomBound) return
+      img.dataset.zoomBound = 'true'
 
-  // 额外保险：Content 可能是 client:only
-  setTimeout(addCopyButtons, 200)
+      img.style.cursor = 'zoom-in'
+
+      img.addEventListener('click', () => {
+        const overlay = document.createElement('div')
+        overlay.className = 'image-zoom-overlay'
+
+        const zoomedImg = img.cloneNode(true)
+        zoomedImg.className = 'image-zoomed'
+        zoomedImg.style.cursor = 'zoom-out'
+
+        overlay.appendChild(zoomedImg)
+        document.body.appendChild(overlay)
+
+        overlay.addEventListener('click', () => {
+          overlay.remove()
+        })
+      })
+    })
+  }
+
+  /* ================= 初始化统一入口 ================= */
+
+  function initMarkdownEnhancements() {
+    addCopyButtons()
+    enableImageZoom()
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(initMarkdownEnhancements, 0)
+  })
+
+  window.addEventListener('astro:after-swap', () => {
+    setTimeout(initMarkdownEnhancements, 50)
+  })
+
+  setTimeout(initMarkdownEnhancements, 200)
 </script>
