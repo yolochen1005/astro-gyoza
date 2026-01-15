@@ -11,20 +11,29 @@ const { class: className } = Astro.props
 </article>
 
 <script is:inline>
+  /* ================= 代码块复制按钮 ================= */
+
   function addCopyButtons() {
     document.querySelectorAll('#markdown-wrapper .code-block > pre').forEach((pre) => {
-      if (pre.querySelector('.copy-btn-wrapper')) return
+      // 如果已经被包过，直接跳过
+      if (pre.parentElement?.classList.contains('code-block-wrapper')) return
 
       const code = pre.querySelector('code')
       if (!code) return
 
+      /* 外层容器：负责定位，不滚动 */
       const wrapper = document.createElement('div')
-      wrapper.className = 'copy-btn-wrapper'
-      pre.style.position = 'relative'
-      pre.appendChild(wrapper)
+      wrapper.className = 'code-block-wrapper'
+      Object.assign(wrapper.style, {
+        position: 'relative',
+      })
 
+      // 用 wrapper 包住 pre
+      pre.parentNode.insertBefore(wrapper, pre)
+      wrapper.appendChild(pre)
+
+      /* 复制按钮 */
       const btn = document.createElement('button')
-      btn.className = 'copy-btn'
       btn.textContent = '📋'
       Object.assign(btn.style, {
         position: 'absolute',
@@ -34,12 +43,15 @@ const { class: className } = Astro.props
         borderRadius: '6px',
         border: 'none',
         cursor: 'pointer',
+        background: 'rgba(255,255,255,0.85)',
+        backdropFilter: 'blur(6px)',
         color: '#111',
         transition: 'all 0.2s ease-in-out',
         zIndex: '20',
         fontSize: '14px',
       })
 
+      /* 成功提示 */
       const check = document.createElement('span')
       check.textContent = '✔️'
       Object.assign(check.style, {
@@ -47,7 +59,7 @@ const { class: className } = Astro.props
         top: '8px',
         right: '8px',
         color: '#34d399',
-        transition: 'all 0.2s ease-in-out',
+        transition: 'opacity 0.2s ease-in-out',
         opacity: '0',
         zIndex: '10',
         fontSize: '14px',
@@ -81,10 +93,23 @@ const { class: className } = Astro.props
       img.addEventListener('click', () => {
         const overlay = document.createElement('div')
         overlay.className = 'image-zoom-overlay'
+        Object.assign(overlay.style, {
+          position: 'fixed',
+          inset: '0',
+          background: 'rgba(0,0,0,0.7)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: '9999',
+        })
 
         const zoomedImg = img.cloneNode(true)
-        zoomedImg.className = 'image-zoomed'
-        zoomedImg.style.cursor = 'zoom-out'
+        Object.assign(zoomedImg.style, {
+          maxWidth: '90vw',
+          maxHeight: '90vh',
+          cursor: 'zoom-out',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.4)',
+        })
 
         overlay.appendChild(zoomedImg)
         document.body.appendChild(overlay)
@@ -96,7 +121,7 @@ const { class: className } = Astro.props
     })
   }
 
-  /* ================= 初始化统一入口 ================= */
+  /* ================= 统一初始化 ================= */
 
   function initMarkdownEnhancements() {
     addCopyButtons()
