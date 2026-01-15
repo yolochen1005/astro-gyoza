@@ -9,3 +9,77 @@ const { class: className } = Astro.props
 <article id="markdown-wrapper" class="markdown" class:list={[className]}>
   <slot />
 </article>
+
+<script is:inline>
+  function addCopyButtons() {
+    document.querySelectorAll('#markdown-wrapper .code-block > pre').forEach((pre) => {
+      if (pre.querySelector('.copy-btn-wrapper')) return
+
+      const code = pre.querySelector('code')
+      if (!code) return
+
+      // 按钮容器
+      const wrapper = document.createElement('div')
+      wrapper.className = 'copy-btn-wrapper'
+      pre.style.position = 'relative'
+      pre.appendChild(wrapper)
+
+      // 复制按钮
+      const btn = document.createElement('button')
+      btn.className = 'copy-btn'
+      btn.textContent = '📋' // 初始图标
+      Object.assign(btn.style, {
+        position: 'absolute',
+        top: '8px',
+        right: '8px',
+        padding: '4px 6px',
+        borderRadius: '6px',
+        border: 'none',
+        cursor: 'pointer',
+        // background: '#f3f4f6',
+        color: '#111',
+        // boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+        transition: 'all 0.2s ease-in-out',
+        zIndex: '20',
+        fontSize: '14px',
+      })
+
+      // 勾勾提示
+      const check = document.createElement('span')
+      check.textContent = '✔️'
+      Object.assign(check.style, {
+        position: 'absolute',
+        top: '8px',
+        right: '8px',
+        color: '#34d399',
+        transition: 'all 0.2s ease-in-out',
+        opacity: '0',
+        zIndex: '10',
+        fontSize: '14px',
+      })
+
+      btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(code.innerText)
+        btn.style.opacity = '0'
+        check.style.opacity = '1'
+
+        setTimeout(() => {
+          btn.style.opacity = '1'
+          check.style.opacity = '0'
+        }, 2000)
+      })
+
+      wrapper.appendChild(btn)
+      wrapper.appendChild(check)
+    })
+  }
+
+  // 初始化一次
+  window.addEventListener('load', () => setTimeout(addCopyButtons, 0))
+
+  // SPA 导航后
+  window.addEventListener('astro:after-swap', () => setTimeout(addCopyButtons, 50))
+
+  // 额外保险：Content 可能是 client:only
+  setTimeout(addCopyButtons, 200)
+</script>
