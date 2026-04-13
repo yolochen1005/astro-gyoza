@@ -25,9 +25,9 @@
         "color": "rgb(24, 23, 23)"
       },
       {
-        "name": "Telegram",
-        "icon": "icon-telegram",
-        "url": "https://t.me/Asakijz",
+        "name": "About Me",
+        "icon": "icon-user-heart",
+        "url": "/about",
         "color": "rgb(0 136 204)"
       },
       {
